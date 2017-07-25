@@ -1,0 +1,25 @@
+---
+spring:
+  profiles:
+    active: dev
+demo:
+  alarm:
+    alarmResource: http://10.0.15.21:4040/alarm
+  temp:
+    tempResource: http://10.0.15.22:5050/temperature
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+    client:
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+      client-id: my-trusted-client
+      client-secret: secret
+logging:
+  level:
+    org.springframework.security: DEBUG
+#server:
+#  port: 8080
+#  context-path: /uaa
+

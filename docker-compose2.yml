@@ -1,0 +1,44 @@
+version: "3"
+services:
+
+  temp:
+        image: metamaatik/temp
+        ports:
+          - 5050:8080
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+          mode: replicated
+          replicas: 3
+          restart_policy:
+            condition: on-failure
+          placement:
+            constraints: [node.role == worker]
+
+  alarm:
+        image: metamaatik/alarm
+        ports:
+          - 4040:8080
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+          mode: replicated
+          replicas: 3
+          restart_policy:
+            condition: on-failure
+          placement:
+            constraints: [node.role == worker]
+
+  app:
+        image: metamaatik/application
+        ports:
+          - 6060:8080
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+          #mode: replicated
+          #replicas: 2
+          restart_policy:
+            condition: on-failure
+          placement:
+            constraints: [node.role == manager]

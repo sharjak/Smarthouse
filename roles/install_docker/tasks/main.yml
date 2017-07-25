@@ -1,0 +1,20 @@
+---
+    - name: Install list of packages
+      action: "{{ansible_pkg_mgr}} name={{ item }} state=present update_cache=yes"
+      with_items:
+            - apt-transport-https
+            - ca-certificates
+            - curl
+            - software-properties-common
+
+    - name: Download Docker
+      shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+
+    - name: Add Apt Repository
+      shell: 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu trusty stable"'
+
+    - name: Getting Updates
+      shell:  "sudo apt-get update"
+
+    - name: Install Docker
+      shell: "sudo apt-get -y install docker-ce"

@@ -1,0 +1,41 @@
+---
+
+ #- name: Remove Docker Portainer
+ #  sudo: yes
+#   shell: "docker rm -f portainer"
+#   ignore_errors: true
+
+#  - name: Connect to swarm cluster
+#    sudo: yes
+#    command: "docker run -d --name=portainer -p 4000:9000 --restart=always \
+#                -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer -H unix:///var/run/docker.sock"
+
+  # - name: Set admin password for Portainer
+    # uri:
+      # url: "http://10.0.15.11:4000/api/users/admin/init"
+      # method: POST
+      # return_content: yes
+      # body: {"password": "Admin99!"}
+      # body_format: json
+
+  # - name: Authenticate against the API(for cluster)
+    # uri:
+      # url: "http://10.0.15.11:4000/api/auth"
+      # method: POST
+      # return_content: yes
+      # body: {"username": "admin", "password": "Admin99!"}
+      # body_format: json
+    # register: auth_token
+
+  # - debug: msg="{{ (auth_token.content|from_json).jwt }}"
+
+ # - name: Define endpoints
+ #   uri:
+ #     url: "http://10.0.15.11:4000/api/endpoints"
+ #     method: POST
+ #     return_content: yes
+ #     HEADER_Authorization: "{{ (auth_token.content|from_json).jwt }}"
+ #     body: {"Name":"{{ hostvars[item]['ansible_host'] }}", "URL":"tcp://{{ hostvars[item]['ansible_host'] }}:2377"}
+#      body_format: json
+#    with_items:
+#      - "{{ groups['workers'] | difference(groups['managers']) }}"

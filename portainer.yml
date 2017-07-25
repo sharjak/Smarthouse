@@ -1,0 +1,4 @@
+---
+- hosts: managers
+  roles:
+    - ansible_role_portainer

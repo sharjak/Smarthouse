@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  roles:
+  - install_docker
+
+- hosts: managers
+  become: true
+  roles:
+  - create_docker_leader
+
+- hosts: workers
+  become: true
+  vars:
+    token: "{{hostvars.manager.swarm_manager_token.stdout}}"
+  roles:
+  - join_workers_to_swarm
+
+
+
+

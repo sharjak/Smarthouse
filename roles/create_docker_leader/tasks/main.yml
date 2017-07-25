@@ -1,0 +1,9 @@
+---
+    - name: Docker manager to leader
+      sudo: yes
+      shell: "docker swarm init --advertise-addr 10.0.15.11"
+
+    - name: retrieve swarm manager token
+      sudo: yes
+      shell: "docker swarm join-token -q worker"
+      register: swarm_manager_token

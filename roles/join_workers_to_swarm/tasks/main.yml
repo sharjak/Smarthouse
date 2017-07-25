@@ -1,0 +1,5 @@
+---
+    - name: connect to manager
+      shell: 'sudo docker swarm join \
+              --token {{token}} \
+              10.0.15.11:2377'
