@@ -30,7 +30,7 @@ services:
             constraints: [node.role == worker]
 
   app:
-        image: metamaatik/application
+        image: metamaatik/app
         ports:
           - 6060:8080
         volumes:
@@ -38,6 +38,18 @@ services:
         deploy:
           #mode: replicated
           #replicas: 2
+          restart_policy:
+            condition: on-failure
+          placement:
+            constraints: [node.role == manager]
+
+  auth-server:
+        image: metamaatik/auth-server
+        ports:
+          - 5000:8080
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
           restart_policy:
             condition: on-failure
           placement:

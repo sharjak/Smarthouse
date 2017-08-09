@@ -34,6 +34,12 @@ public class ApplicationController {
         return response;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> login() throws Exception {
+        ResponseEntity<String> response = restTemplate.getForEntity(alarmResource, String.class);
+        return response;
+    }
+
     @RequestMapping(value = "/smarthouse2", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<String> temperature() throws Exception {
         ResponseEntity<String> response2 = restTemplate.getForEntity(tempResource, String.class);

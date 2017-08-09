@@ -7,19 +7,20 @@ demo:
     alarmResource: http://10.0.15.21:4040/alarm
   temp:
     tempResource: http://10.0.15.22:5050/temperature
-security:
-  oauth2:
-    resource:
-      filter-order: 3
-    client:
-      access-token-uri: http://localhost:8080/oauth/token
-      user-authorization-uri: http://localhost:8080/oauth/authorize
-      client-id: my-trusted-client
-      client-secret: secret
 logging:
   level:
     org.springframework.security: DEBUG
-#server:
-#  port: 8080
-#  context-path: /uaa
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+        access-token-uri: http://10.0.15.11:5000/oauth/token
+        user-authorization-uri: http://10.0.15.11:5000/oauth/authorize
+auth:
+  server:
+    url: http://10.0.15.11:5000/oauth/check_token
+    clientId: my-trusted-client
+    clientsecret: secret
 

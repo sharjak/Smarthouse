@@ -1,0 +1,14 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+#server:
+#  port: 7000
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+        access-token-uri: http://10.0.15.11:5000/oauth/token
+        user-authorization-uri: http://10.0.15.11:5000/oauth/authorize
